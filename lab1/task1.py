@@ -1,37 +1,69 @@
-class Post:
+from abc import ABC, abstractmethod
+from datetime import datetime
 
-    def __init__(self, author, title, content):
-        self.author = author  # Никнейм автора
-        self.title = title  # Заголовок поста
-        self.content = content  # Содержимое поста
-        self.likes = 0  # Количество лайков
-        self.comments = []  # Список комментариев
-        self.timestamp = self.get_current_time()  # Время публикации
+class Likeable(ABC):
+    @abstractmethod
+    def like(self):
+        pass
 
-    def get_current_time(self):
-        from datetime import datetime
-        return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+class Comment:
+    def __init__(self, author: str, text: str):
+        self.author = author
+        self.text = text
+        self.timestamp = datetime.now()
+
+    def __str__(self):
+        return f"{self.author} ({self.timestamp.strftime('%Y-%m-%d %H:%M')}): {self.text}"
+
+class Post(Likeable):
+    def __init__(self, author: str, text: str):
+        self.__author = author                        
+        self.__timestamp = datetime.now()
+        self.__likes = 0
+        self.__text = text
+        self.__comments = []
+        self.__profanity_count = 0
+
+    def get_author(self):
+        return self.__author
+
+    def get_likes(self):
+        return self.__likes
+
+    def get_text(self):
+        return self.__text
+
+    def get_comments(self):
+        return self.__comments
 
     def like(self):
-        self.likes += 1  # Увеличиваем количество лайков
+        self.__likes += 1
 
-    def add_comment(self, comment):
-        self.comments.append(comment)  # Добавляем комментарий
+    def add_comment(self, comment: Comment):
+        self.__comments.append(comment)
 
-    def display(self):
-        # Выводим информацию о посте
-        print(f'Author: {self.author}\nTitle: {self.title}\nContent: {self.content}\nLikes: {self.likes}\nComments: {self.comments}\nPublished at: {self.timestamp}')
+    def __str__(self):
+        comment_str = "\n".join(str(c) for c in self.__comments)
+        return (f"Author: {self.__author}\n"
+                f"Time: {self.__timestamp.strftime('%Y-%m-%d %H:%M')}\n"
+                f"Likes: {self.__likes}\n"
+                f"Text: {self.__text}\n"
+                f"Comments:\n{comment_str if comment_str else 'No comments'}")
 
-print("Вариант 15")
+# Пример
+post = Post(author="Григорий", text="Волчьи цитаты из статусов ВК")
 
-# Пример 1
-post = Post('Grigirii434', 'Первый пост', 'Текст поста.')
-post.like()  # Добавляем лайк
-post.add_comment('Отличный пост!')  # Добавляем комментарий
-post.display()  # Отображаем пост
-
-# Пример 2
-post = Post('Grigirii434', 'Второй пост', 'Текст второго поста.')
+# Ставим лайки
 post.like()
-post.add_comment('Супер!')
-post.display()
+post.like()
+
+# Добавляем комментарии
+comment1 = Comment(author="Влад", text="Кайф жи есть братишка")
+comment2 = Comment(author="Леха", text="Поддерживаю")
+
+post.add_comment(comment1)
+post.add_comment(comment2)
+
+# Выводим публикацию в консоль
+print("=== Текстовая публикация ===")
+print(post)
