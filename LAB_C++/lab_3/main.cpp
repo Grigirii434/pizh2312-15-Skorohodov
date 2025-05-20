@@ -2,103 +2,103 @@
 #include <string>
 using namespace std;
 
-// Базовый класс Книга
+// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РљРЅРёРіР°
 class Book {
 protected:
     string title;
     string author;
     string genre;
 public:
-    // Конструкторы
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
     Book() : title(""), author(""), genre("") {
-        cout << "Конструктор Book()" << endl;
+        cout << "РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Book()" << endl;
     }
 
     Book(string t, string a, string g) : title(t), author(a), genre(g) {
-        cout << "Конструктор Book(string, string, string)" << endl;
+        cout << "РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Book(string, string, string)" << endl;
     }
 
-    // Деструктор
+    // Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
     ~Book() {
-        cout << "Деструктор ~Book()" << endl;
+        cout << "Р”РµСЃС‚СЂСѓРєС‚РѕСЂ ~Book()" << endl;
     }
 
-    // Метод вывода
+    // РњРµС‚РѕРґ РІС‹РІРѕРґР°
     void display() {
         cout << title << " | " << author << " | " << genre;
     }
 };
 
-// Класс для основного зала
+// РљР»Р°СЃСЃ РґР»СЏ РѕСЃРЅРѕРІРЅРѕРіРѕ Р·Р°Р»Р°
 class MainHallBook : public Book {
 private:
     int shelf;
 public:
     MainHallBook(string t, string a, string g, int s) : Book(t, a, g), shelf(s) {
-        cout << "Конструктор MainHallBook()" << endl;
+        cout << "РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ MainHallBook()" << endl;
     }
 
     ~MainHallBook() {
-        cout << "Деструктор ~MainHallBook()" << endl;
+        cout << "Р”РµСЃС‚СЂСѓРєС‚РѕСЂ ~MainHallBook()" << endl;
     }
 
     void display() {
         Book::display();
-        cout << " | Полка: " << shelf << endl;
+        cout << " | РџРѕР»РєР°: " << shelf << endl;
     }
 };
 
-// Класс для читального зала
+// РљР»Р°СЃСЃ РґР»СЏ С‡РёС‚Р°Р»СЊРЅРѕРіРѕ Р·Р°Р»Р°
 class ReadingRoomBook : public Book {
 private:
     string section;
 public:
     ReadingRoomBook(string t, string a, string g, string s) : Book(t, a, g), section(s) {
-        cout << "Конструктор ReadingRoomBook()" << endl;
+        cout << "РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ ReadingRoomBook()" << endl;
     }
 
     ~ReadingRoomBook() {
-        cout << "Деструктор ~ReadingRoomBook()" << endl;
+        cout << "Р”РµСЃС‚СЂСѓРєС‚РѕСЂ ~ReadingRoomBook()" << endl;
     }
 
     void display() {
         Book::display();
-        cout << " | Раздел: " << section << endl;
+        cout << " | Р Р°Р·РґРµР»: " << section << endl;
     }
 };
 
 int main() {
     setlocale(LC_ALL, "RU");
-    // 1. Создаем объекты
-    Book b1("Война и мир", "Толстой", "Роман");
-    MainHallBook m1("1984", "Оруэлл", "Антиутопия", 5);
-    ReadingRoomBook r1("Мастер и Маргарита", "Булгаков", "Роман", "Классика");
+    // 1. РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚С‹
+    Book b1("Р’РѕР№РЅР° Рё РјРёСЂ", "РўРѕР»СЃС‚РѕР№", "Р РѕРјР°РЅ");
+    MainHallBook m1("1984", "РћСЂСѓСЌР»Р»", "РђРЅС‚РёСѓС‚РѕРїРёСЏ", 5);
+    ReadingRoomBook r1("РњР°СЃС‚РµСЂ Рё РњР°СЂРіР°СЂРёС‚Р°", "Р‘СѓР»РіР°РєРѕРІ", "Р РѕРјР°РЅ", "РљР»Р°СЃСЃРёРєР°");
 
-    // 2. Выводим их
+    // 2. Р’С‹РІРѕРґРёРј РёС…
     b1.display();
     m1.display();
     r1.display();
 
-    // 3. Массив базового типа
+    // 3. РњР°СЃСЃРёРІ Р±Р°Р·РѕРІРѕРіРѕ С‚РёРїР°
     Book* arr1[3] = {
-        new Book("Книга1", "Автор1", "Жанр1"),
-        new MainHallBook("Книга2", "Автор2", "Жанр2", 3),
-        new ReadingRoomBook("Книга3", "Автор3", "Жанр3", "Раздел1")
+        new Book("РљРЅРёРіР°1", "РђРІС‚РѕСЂ1", "Р–Р°РЅСЂ1"),
+        new MainHallBook("РљРЅРёРіР°2", "РђРІС‚РѕСЂ2", "Р–Р°РЅСЂ2", 3),
+        new ReadingRoomBook("РљРЅРёРіР°3", "РђРІС‚РѕСЂ3", "Р–Р°РЅСЂ3", "Р Р°Р·РґРµР»1")
     };
 
-    // 4. Выводим массив
+    // 4. Р’С‹РІРѕРґРёРј РјР°СЃСЃРёРІ
     for (int i = 0; i < 3; i++) {
         arr1[i]->display();
         delete arr1[i];
     }
 
-    // 5. Массив наследника
+    // 5. РњР°СЃСЃРёРІ РЅР°СЃР»РµРґРЅРёРєР°
     MainHallBook arr2[2] = {
-        MainHallBook("Книга4", "Автор4", "Жанр4", 1),
-        MainHallBook("Книга5", "Автор5", "Жанр5", 2)
+        MainHallBook("РљРЅРёРіР°4", "РђРІС‚РѕСЂ4", "Р–Р°РЅСЂ4", 1),
+        MainHallBook("РљРЅРёРіР°5", "РђРІС‚РѕСЂ5", "Р–Р°РЅСЂ5", 2)
     };
 
-    // 6. Выводим массив
+    // 6. Р’С‹РІРѕРґРёРј РјР°СЃСЃРёРІ
     for (int i = 0; i < 2; i++) {
         arr2[i].display();
     }
