@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// Базовый класс - Книга (дополнительный класс из лаб. работы №1)
+// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ - РљРЅРёРіР° (РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РєР»Р°СЃСЃ РёР· Р»Р°Р±. СЂР°Р±РѕС‚С‹ в„–1)
 class Book {
 protected:
     string title;
@@ -13,83 +13,83 @@ protected:
     string genre;
 
 public:
-    Book() : title("Без названия"), author("Неизвестен"), genre("Не указан") {}
+    Book() : title("Р‘РµР· РЅР°Р·РІР°РЅРёСЏ"), author("РќРµРёР·РІРµСЃС‚РµРЅ"), genre("РќРµ СѓРєР°Р·Р°РЅ") {}
     Book(string t, string a, string g) : title(t), author(a), genre(g) {}
     virtual ~Book() {}
 
-    // Чисто виртуальная функция (требование п.2)
+    // Р§РёСЃС‚Рѕ РІРёСЂС‚СѓР°Р»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ (С‚СЂРµР±РѕРІР°РЅРёРµ Рї.2)
     virtual void fullDisplay() const = 0;
 
-    // Методы для доступа к данным
+    // РњРµС‚РѕРґС‹ РґР»СЏ РґРѕСЃС‚СѓРїР° Рє РґР°РЅРЅС‹Рј
     string getTitle() const { return title; }
     string getAuthor() const { return author; }
     string getGenre() const { return genre; }
 };
 
-// Класс-наследник - Книга основного зала
+// РљР»Р°СЃСЃ-РЅР°СЃР»РµРґРЅРёРє - РљРЅРёРіР° РѕСЃРЅРѕРІРЅРѕРіРѕ Р·Р°Р»Р°
 class MainHallBook : public Book {
 private:
     int shelfNumber;
     bool canBorrow;
 
 public:
-    MainHallBook(string t, string a, string g, int sh, bool cb)
+    MainHallBook(string t, string a, string g, int sh, bool cb) 
         : Book(t, a, g), shelfNumber(sh), canBorrow(cb) {}
 
-    // Перегрузка виртуальной функции (требование п.3)
+    // РџРµСЂРµРіСЂСѓР·РєР° РІРёСЂС‚СѓР°Р»СЊРЅРѕР№ С„СѓРЅРєС†РёРё (С‚СЂРµР±РѕРІР°РЅРёРµ Рї.3)
     void fullDisplay() const override {
-        cout << "=== Книга основного зала ===" << endl;
-        cout << "Название: " << title << endl;
-        cout << "Автор: " << author << endl;
-        cout << "Жанр: " << genre << endl;
-        cout << "Номер полки: " << shelfNumber << endl;
-        cout << "Можно взять домой: " << (canBorrow ? "Да" : "Нет") << endl;
+        cout << "=== РљРЅРёРіР° РѕСЃРЅРѕРІРЅРѕРіРѕ Р·Р°Р»Р° ===" << endl;
+        cout << "РќР°Р·РІР°РЅРёРµ: " << title << endl;
+        cout << "РђРІС‚РѕСЂ: " << author << endl;
+        cout << "Р–Р°РЅСЂ: " << genre << endl;
+        cout << "РќРѕРјРµСЂ РїРѕР»РєРё: " << shelfNumber << endl;
+        cout << "РњРѕР¶РЅРѕ РІР·СЏС‚СЊ РґРѕРјРѕР№: " << (canBorrow ? "Р”Р°" : "РќРµС‚") << endl;
     }
 };
 
-// Класс-наследник - Книга читального зала
+// РљР»Р°СЃСЃ-РЅР°СЃР»РµРґРЅРёРє - РљРЅРёРіР° С‡РёС‚Р°Р»СЊРЅРѕРіРѕ Р·Р°Р»Р°
 class ReadingRoomBook : public Book {
 private:
     int roomNumber;
     string readerCardRequired;
 
 public:
-    ReadingRoomBook(string t, string a, string g, int rn, string rc)
+    ReadingRoomBook(string t, string a, string g, int rn, string rc) 
         : Book(t, a, g), roomNumber(rn), readerCardRequired(rc) {}
 
-    // Перегрузка виртуальной функции (требование п.3)
+    // РџРµСЂРµРіСЂСѓР·РєР° РІРёСЂС‚СѓР°Р»СЊРЅРѕР№ С„СѓРЅРєС†РёРё (С‚СЂРµР±РѕРІР°РЅРёРµ Рї.3)
     void fullDisplay() const override {
-        cout << "=== Книга читального зала ===" << endl;
-        cout << "Название: " << title << endl;
-        cout << "Автор: " << author << endl;
-        cout << "Жанр: " << genre << endl;
-        cout << "Номер зала: " << roomNumber << endl;
-        cout << "Требуется читательский билет: " << readerCardRequired << endl;
+        cout << "=== РљРЅРёРіР° С‡РёС‚Р°Р»СЊРЅРѕРіРѕ Р·Р°Р»Р° ===" << endl;
+        cout << "РќР°Р·РІР°РЅРёРµ: " << title << endl;
+        cout << "РђРІС‚РѕСЂ: " << author << endl;
+        cout << "Р–Р°РЅСЂ: " << genre << endl;
+        cout << "РќРѕРјРµСЂ Р·Р°Р»Р°: " << roomNumber << endl;
+        cout << "РўСЂРµР±СѓРµС‚СЃСЏ С‡РёС‚Р°С‚РµР»СЊСЃРєРёР№ Р±РёР»РµС‚: " << readerCardRequired << endl;
     }
 };
 
-// Основной класс - Библиотека (из лаб. работы №1)
+// РћСЃРЅРѕРІРЅРѕР№ РєР»Р°СЃСЃ - Р‘РёР±Р»РёРѕС‚РµРєР° (РёР· Р»Р°Р±. СЂР°Р±РѕС‚С‹ в„–1)
 class Library {
 private:
     string name;
     string address;
-    vector<unique_ptr<Book>> books;  // Модифицированный массив (требование п.6)
+    vector<unique_ptr<Book>> books;  // РњРѕРґРёС„РёС†РёСЂРѕРІР°РЅРЅС‹Р№ РјР°СЃСЃРёРІ (С‚СЂРµР±РѕРІР°РЅРёРµ Рї.6)
 
 public:
     Library(string n, string a) : name(n), address(a) {}
 
-    // Метод для добавления любой книги (модификация для п.6)
+    // РњРµС‚РѕРґ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ Р»СЋР±РѕР№ РєРЅРёРіРё (РјРѕРґРёС„РёРєР°С†РёСЏ РґР»СЏ Рї.6)
     void addBook(unique_ptr<Book> book) {
         books.push_back(move(book));
     }
 
-    // Метод вывода всех данных (требование п.6)
+    // РњРµС‚РѕРґ РІС‹РІРѕРґР° РІСЃРµС… РґР°РЅРЅС‹С… (С‚СЂРµР±РѕРІР°РЅРёРµ Рї.6)
     void displayAll() const {
-        cout << "\n=== Информация о библиотеке ===" << endl;
-        cout << "Название: " << name << endl;
-        cout << "Адрес: " << address << endl;
-        cout << "\n=== Книги в библиотеке ===" << endl;
-
+        cout << "\n=== РРЅС„РѕСЂРјР°С†РёСЏ Рѕ Р±РёР±Р»РёРѕС‚РµРєРµ ===" << endl;
+        cout << "РќР°Р·РІР°РЅРёРµ: " << name << endl;
+        cout << "РђРґСЂРµСЃ: " << address << endl;
+        cout << "\n=== РљРЅРёРіРё РІ Р±РёР±Р»РёРѕС‚РµРєРµ ===" << endl;
+        
         for (const auto& book : books) {
             book->fullDisplay();
             cout << endl;
@@ -98,36 +98,36 @@ public:
 };
 
 int main() {
-    cout << "=== ЛАБОРАТОРНАЯ РАБОТА 4 ===" << endl;
-    cout << "=== Работа с абстрактными классами и полиморфизмом ===" << endl;
+    cout << "=== Р›РђР‘РћР РђРўРћР РќРђРЇ Р РђР‘РћРўРђ 4 ===" << endl;
+    cout << "=== Р Р°Р±РѕС‚Р° СЃ Р°Р±СЃС‚СЂР°РєС‚РЅС‹РјРё РєР»Р°СЃСЃР°РјРё Рё РїРѕР»РёРјРѕСЂС„РёР·РјРѕРј ===" << endl;
 
-    // 1. Создание массива базового класса (требование п.4)
+    // 1. РЎРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР° Р±Р°Р·РѕРІРѕРіРѕ РєР»Р°СЃСЃР° (С‚СЂРµР±РѕРІР°РЅРёРµ Рї.4)
     vector<unique_ptr<Book>> bookCollection;
+    
+    // Р”РѕР±Р°РІР»СЏРµРј РѕР±СЉРµРєС‚С‹ СЂР°Р·РЅС‹С… РєР»Р°СЃСЃРѕРІ-РЅР°СЃР»РµРґРЅРёРєРѕРІ
+    bookCollection.push_back(make_unique<MainHallBook>("1984", "Р”Р¶. РћСЂСѓСЌР»Р»", "РђРЅС‚РёСѓС‚РѕРїРёСЏ", 5, true));
+    bookCollection.push_back(make_unique<ReadingRoomBook>("Р’РѕР№РЅР° Рё РјРёСЂ", "Р›. РўРѕР»СЃС‚РѕР№", "Р РѕРјР°РЅ", 3, "Р”Р°"));
+    bookCollection.push_back(make_unique<MainHallBook>("Р“Р°СЂСЂРё РџРѕС‚С‚РµСЂ", "Р”Р¶. Р РѕСѓР»РёРЅРі", "Р¤СЌРЅС‚РµР·Рё", 7, false));
 
-    // Добавляем объекты разных классов-наследников
-    bookCollection.push_back(make_unique<MainHallBook>("1984", "Дж. Оруэлл", "Антиутопия", 5, true));
-    bookCollection.push_back(make_unique<ReadingRoomBook>("Война и мир", "Л. Толстой", "Роман", 3, "Да"));
-    bookCollection.push_back(make_unique<MainHallBook>("Гарри Поттер", "Дж. Роулинг", "Фэнтези", 7, false));
-
-    // 2. Вывод данных (требование п.5)
-    cout << "\nВывод данных из массива:" << endl;
+    // 2. Р’С‹РІРѕРґ РґР°РЅРЅС‹С… (С‚СЂРµР±РѕРІР°РЅРёРµ Рї.5)
+    cout << "\nР’С‹РІРѕРґ РґР°РЅРЅС‹С… РёР· РјР°СЃСЃРёРІР°:" << endl;
     for (const auto& book : bookCollection) {
         book->fullDisplay();
         cout << endl;
     }
 
-    // 3. Работа с основным классом (требование п.7)
-    cout << "\nРабота с классом Library:" << endl;
-    Library centralLibrary("Центральная библиотека", "ул. Ленина, 10");
+    // 3. Р Р°Р±РѕС‚Р° СЃ РѕСЃРЅРѕРІРЅС‹Рј РєР»Р°СЃСЃРѕРј (С‚СЂРµР±РѕРІР°РЅРёРµ Рї.7)
+    cout << "\nР Р°Р±РѕС‚Р° СЃ РєР»Р°СЃСЃРѕРј Library:" << endl;
+    Library centralLibrary("Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ Р±РёР±Р»РёРѕС‚РµРєР°", "СѓР». Р›РµРЅРёРЅР°, 10");
+    
+    // Р”РѕР±Р°РІР»СЏРµРј РєРЅРёРіРё СЂР°Р·РЅС‹С… С‚РёРїРѕРІ
+    centralLibrary.addBook(make_unique<MainHallBook>("РџСЂРµСЃС‚СѓРїР»РµРЅРёРµ Рё РЅР°РєР°Р·Р°РЅРёРµ", "Р¤. Р”РѕСЃС‚РѕРµРІСЃРєРёР№", "Р РѕРјР°РЅ", 2, true));
+    centralLibrary.addBook(make_unique<ReadingRoomBook>("Р­РЅС†РёРєР»РѕРїРµРґРёСЏ", "Р Р°Р·РЅС‹Рµ Р°РІС‚РѕСЂС‹", "РЎРїСЂР°РІРѕС‡РЅРёРє", 1, "Р”Р°"));
+    centralLibrary.addBook(make_unique<MainHallBook>("Р РµРІРёР·РѕСЂ", "Рќ. Р“РѕРіРѕР»СЊ", "РџСЊРµСЃР°", 4, false));
 
-    // Добавляем книги разных типов
-    centralLibrary.addBook(make_unique<MainHallBook>("Преступление и наказание", "Ф. Достоевский", "Роман", 2, true));
-    centralLibrary.addBook(make_unique<ReadingRoomBook>("Энциклопедия", "Разные авторы", "Справочник", 1, "Да"));
-    centralLibrary.addBook(make_unique<MainHallBook>("Ревизор", "Н. Гоголь", "Пьеса", 4, false));
-
-    // Выводим все данные
+    // Р’С‹РІРѕРґРёРј РІСЃРµ РґР°РЅРЅС‹Рµ
     centralLibrary.displayAll();
 
-    cout << "\n=== Завершение программы ===" << endl;
+    cout << "\n=== Р—Р°РІРµСЂС€РµРЅРёРµ РїСЂРѕРіСЂР°РјРјС‹ ===" << endl;
     return 0;
 }
